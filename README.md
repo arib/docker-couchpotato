@@ -23,6 +23,27 @@ The [LinuxServer.io][linuxserverurl] team brings you another container release f
 
 ## Usage
 
+```sh
+# As user docker do
+$ mkdir containers && cd containers
+$ git clone git@github.com:arib/docker-couchpotato.git
+$ cd docker-couchpotato
+$ mkdir config
+$ id docker
+# insert user and group id into create command below
+```
+
+```
+docker create \
+  --name=couchpotato \
+  -v /home/docker/containers/docker-couchpotato/config:/config \
+  -e PGID=999 -e PUID=1001  \
+  -e TZ=Atlantic/Reykjavik \
+  -p 8882:5050 \
+  --restart-always \
+  linuxserver/couchpotato
+```
+
 ```
 docker create \
 	--name=couchpotato \
